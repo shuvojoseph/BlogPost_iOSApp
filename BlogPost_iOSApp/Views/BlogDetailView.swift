@@ -9,19 +9,20 @@ import SwiftUI
 
 
 struct BlogDetailView: View {
-    let blogId: String
-    @StateObject private var viewModel = BlogDetailViewModel()
+    //let blogId: String
+    let blog: Blog?
+    //@StateObject private var viewModel = BlogDetailViewModel()
     
     
     var body: some View {
         VStack {
-            if let blog = viewModel.blog {
+            if let blog = blog {
                 Text(blog.title).font(.headline)
                 Text(blog.details).padding()
             } else {
                 ProgressView()
             }
         }
-        .onAppear { viewModel.loadBlog(id: blogId) }
+        .onAppear {}
     }
 }

@@ -28,4 +28,28 @@ final class BlogListViewModel: ObservableObject {
             }
         }
     }
+    /*
+    func deleteBlog(blog:Blog)
+    {
+        
+    }
+     */
+    func deleteBlog(_ blog: Blog) {
+        BlogService.shared.deleteBlog(id: blog.id) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                switch result {
+                case .success:
+                    self.blogs.removeAll { $0.id == blog.id }
+                case .failure(let err):
+                    self.errorMessage = err.localizedDescription
+                }
+            }
+        }
+    }
+    
+    func isOwner(_ blog: Blog, currentUserId: String?) -> Bool {
+        guard let uid = currentUserId else { return false }
+        return blog.ownerId == uid   // adjust if your model uses a different field name
+    }
 }
