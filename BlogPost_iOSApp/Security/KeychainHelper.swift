@@ -24,6 +24,31 @@ final class KeychainHelper {
         SecItemAdd(query as CFDictionary, nil)
     }
     
+    // Save or update
+        func save(_ data: Data, service: String, account: String) {
+            let query: [String: Any] = [
+                kSecClass as String       : kSecClassGenericPassword,
+                kSecAttrService as String : service,
+                kSecAttrAccount as String : account,
+                kSecValueData as String   : data
+            ]
+
+            // Try to add first
+            let status = SecItemAdd(query as CFDictionary, nil)
+
+            if status == errSecDuplicateItem {
+                // Update existing
+                let attributesToUpdate: [String: Any] = [kSecValueData as String: data]
+                SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
+            }
+        }
+
+        // Convenience for saving Strings
+        func save(_ value: String, service: String, account: String) {
+            if let data = value.data(using: .utf8) {
+                save(data, service: service, account: account)
+            }
+        }
     
     func get(_ key: String) -> Data? {
         let query: [String: Any] = [
