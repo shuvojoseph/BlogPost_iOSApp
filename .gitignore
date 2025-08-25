@@ -1,0 +1,20 @@
+# Xcode
+.DS_Store
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+build/
+
+# Swift Package Manager
+.build/
+
+# Cocoapods
+Pods/
+!Pods/.gitkeep # Keep the Pods directory in Git if needed for dependency management
+
+# Carthage
+Carthage/Build/
+
+# Other
+.swiftpm/
+.swiftlint.yml # If using SwiftLint and it's a user-specific config
