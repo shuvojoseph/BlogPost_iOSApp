@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		68399AF55B5BC39CD00CAD07 /* Pods_BlogPost_iOSApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68B6C36C2DAAAC90F06F454F /* Pods_BlogPost_iOSApp.framework */; };
+		DEFEC75BD051C474F639CE91 /* Pods_BlogPost_iOSApp_BlogPost_iOSAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E24EE39A0306963BDFCB9888 /* Pods_BlogPost_iOSApp_BlogPost_iOSAppUITests.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		308FC32B2E5C402B00418FCE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,24 +29,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CFB6FD6CE6735C5A97C8445 /* Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		308FC31C2E5C402B00418FCE /* BlogPost_iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlogPost_iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308FC32A2E5C402B00418FCE /* BlogPost_iOSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlogPost_iOSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		308FC3342E5C402B00418FCE /* BlogPost_iOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlogPost_iOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		50C06E8E1AFFEC3DFC2531E5 /* Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.release.xcconfig"; path = "Target Support Files/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		68B6C36C2DAAAC90F06F454F /* Pods_BlogPost_iOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlogPost_iOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A2EA8987997DA4A3E52C60 /* Pods-BlogPost_iOSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlogPost_iOSApp.debug.xcconfig"; path = "Target Support Files/Pods-BlogPost_iOSApp/Pods-BlogPost_iOSApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E24EE39A0306963BDFCB9888 /* Pods_BlogPost_iOSApp_BlogPost_iOSAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlogPost_iOSApp_BlogPost_iOSAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D60F5514110A42563C6DF7 /* Pods-BlogPost_iOSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlogPost_iOSApp.release.xcconfig"; path = "Target Support Files/Pods-BlogPost_iOSApp/Pods-BlogPost_iOSApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		308FC31E2E5C402B00418FCE /* BlogPost_iOSApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BlogPost_iOSApp;
 			sourceTree = "<group>";
 		};
 		308FC32D2E5C402B00418FCE /* BlogPost_iOSAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BlogPost_iOSAppTests;
 			sourceTree = "<group>";
 		};
 		308FC3372E5C402B00418FCE /* BlogPost_iOSAppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BlogPost_iOSAppUITests;
 			sourceTree = "<group>";
 		};
@@ -52,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68399AF55B5BC39CD00CAD07 /* Pods_BlogPost_iOSApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +84,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEFEC75BD051C474F639CE91 /* Pods_BlogPost_iOSApp_BlogPost_iOSAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2349C1D2EF2DEFD9C30308CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68B6C36C2DAAAC90F06F454F /* Pods_BlogPost_iOSApp.framework */,
+				E24EE39A0306963BDFCB9888 /* Pods_BlogPost_iOSApp_BlogPost_iOSAppUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		308FC3132E5C402B00418FCE = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +107,8 @@
 				308FC32D2E5C402B00418FCE /* BlogPost_iOSAppTests */,
 				308FC3372E5C402B00418FCE /* BlogPost_iOSAppUITests */,
 				308FC31D2E5C402B00418FCE /* Products */,
+				5702D33666B0011BEDE6B77D /* Pods */,
+				2349C1D2EF2DEFD9C30308CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +122,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5702D33666B0011BEDE6B77D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				84A2EA8987997DA4A3E52C60 /* Pods-BlogPost_iOSApp.debug.xcconfig */,
+				F4D60F5514110A42563C6DF7 /* Pods-BlogPost_iOSApp.release.xcconfig */,
+				0CFB6FD6CE6735C5A97C8445 /* Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.debug.xcconfig */,
+				50C06E8E1AFFEC3DFC2531E5 /* Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -99,9 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 308FC33E2E5C402B00418FCE /* Build configuration list for PBXNativeTarget "BlogPost_iOSApp" */;
 			buildPhases = (
+				6EE8C5F6188AB9903C814E12 /* [CP] Check Pods Manifest.lock */,
 				308FC3182E5C402B00418FCE /* Sources */,
 				308FC3192E5C402B00418FCE /* Frameworks */,
 				308FC31A2E5C402B00418FCE /* Resources */,
+				BC58A39A95D6829401E531F3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -111,8 +155,6 @@
 				308FC31E2E5C402B00418FCE /* BlogPost_iOSApp */,
 			);
 			name = BlogPost_iOSApp;
-			packageProductDependencies = (
-			);
 			productName = BlogPost_iOSApp;
 			productReference = 308FC31C2E5C402B00418FCE /* BlogPost_iOSApp.app */;
 			productType = "com.apple.product-type.application";
@@ -134,8 +176,6 @@
 				308FC32D2E5C402B00418FCE /* BlogPost_iOSAppTests */,
 			);
 			name = BlogPost_iOSAppTests;
-			packageProductDependencies = (
-			);
 			productName = BlogPost_iOSAppTests;
 			productReference = 308FC32A2E5C402B00418FCE /* BlogPost_iOSAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -144,9 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 308FC3442E5C402B00418FCE /* Build configuration list for PBXNativeTarget "BlogPost_iOSAppUITests" */;
 			buildPhases = (
+				44AF5662FC1F78CE2BEC37FD /* [CP] Check Pods Manifest.lock */,
 				308FC3302E5C402B00418FCE /* Sources */,
 				308FC3312E5C402B00418FCE /* Frameworks */,
 				308FC3322E5C402B00418FCE /* Resources */,
+				B186AC586C221869736B4E95 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,8 +199,6 @@
 				308FC3372E5C402B00418FCE /* BlogPost_iOSAppUITests */,
 			);
 			name = BlogPost_iOSAppUITests;
-			packageProductDependencies = (
-			);
 			productName = BlogPost_iOSAppUITests;
 			productReference = 308FC3342E5C402B00418FCE /* BlogPost_iOSAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -230,6 +270,87 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		44AF5662FC1F78CE2BEC37FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EE8C5F6188AB9903C814E12 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlogPost_iOSApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B186AC586C221869736B4E95 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests/Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC58A39A95D6829401E531F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BlogPost_iOSApp/Pods-BlogPost_iOSApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BlogPost_iOSApp/Pods-BlogPost_iOSApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BlogPost_iOSApp/Pods-BlogPost_iOSApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		308FC3182E5C402B00418FCE /* Sources */ = {
@@ -385,6 +506,7 @@
 		};
 		308FC33F2E5C402B00418FCE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84A2EA8987997DA4A3E52C60 /* Pods-BlogPost_iOSApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -422,6 +544,7 @@
 		};
 		308FC3402E5C402B00418FCE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4D60F5514110A42563C6DF7 /* Pods-BlogPost_iOSApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -503,6 +626,7 @@
 		};
 		308FC3452E5C402B00418FCE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CFB6FD6CE6735C5A97C8445 /* Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -524,6 +648,7 @@
 		};
 		308FC3462E5C402B00418FCE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50C06E8E1AFFEC3DFC2531E5 /* Pods-BlogPost_iOSApp-BlogPost_iOSAppUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
