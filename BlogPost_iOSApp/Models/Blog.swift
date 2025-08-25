@@ -9,11 +9,11 @@ import Foundation
 
 
 struct Blog: Codable, Identifiable, Hashable {
-let id: String // or Int
+let id: String // String or Int 
 var title: String
 var details: String
-let ownerId: String // or Int
-var coOwnerIds: [String] // or [Int]
+let ownerId: String? // or Int
+var coOwnerIds: [String]? // or [Int]
 
 
 enum CodingKeys: String, CodingKey {

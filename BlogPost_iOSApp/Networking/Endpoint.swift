@@ -19,13 +19,13 @@ enum Endpoint {
     
     var path: String {
         switch self {
-        case .login: return "/auth/login"
-        case .register: return "/auth/register"
-        case .blogs: return "/blogs"
-        case .blog(let id): return "/blogs/\(id)"
-        case .createBlog: return "/blogs"
-        case .updateBlog(let id): return "/blogs/\(id)"
-        case .deleteBlog(let id): return "/blogs/\(id)"
+        case .login: return "/api/auth/login"
+        case .register: return "/api/auth/register"
+        case .blogs: return "/api/blogs"
+        case .blog(let id): return "/api/blogs/\(id)"
+        case .createBlog: return "/api/blogs"
+        case .updateBlog(let id): return "/api/blogs/\(id)"
+        case .deleteBlog(let id): return "/api/blogs/\(id)"
         }
     }
     

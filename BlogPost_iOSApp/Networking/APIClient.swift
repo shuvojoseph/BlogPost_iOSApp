@@ -27,7 +27,7 @@ final class APIClient {
                                completion: @escaping (Result<T, AFError>) -> Void) {
         
         let url = baseURL + endpoint.path
-        
+        print("url : "+url)
         // Convert the string method to Alamofire's HTTPMethod
         let requestMethod: Alamofire.HTTPMethod = {
             if let method = method {
@@ -54,6 +54,7 @@ final class APIClient {
                    headers: headers)
         .validate()
         .responseDecodable(of: T.self) { response in
+            print("response.description : " + response.description)
             completion(response.result)
         }
         /*
