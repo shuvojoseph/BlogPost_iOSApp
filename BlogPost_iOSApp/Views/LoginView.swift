@@ -13,7 +13,7 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
-    
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(spacing: 16) {
@@ -29,7 +29,11 @@ struct LoginView: View {
             
             
             Button("Login") {
-                viewModel.login { success in }
+                viewModel.login { success in
+                    if success {
+                        presentationMode.wrappedValue.dismiss() // ✅ back to BlogListView
+                    }
+                }
             }
         }
         .padding()
