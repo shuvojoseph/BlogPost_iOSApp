@@ -7,48 +7,84 @@
 
 import SwiftUICore
 import SwiftUI
-/*
+
 struct AddEditBlogView: View {
-    @Environment(\.dismiss) var dismiss
-    @State private var title: String
-    @State private var content: String
-    
-    var blog: Blog?
-    var onSave: (Blog) -> Void
-    
-    init(blog: Blog? = nil, onSave: @escaping (Blog) -> Void) {
-        self.blog = blog
-        _title = State(initialValue: blog?.title ?? "")
-        _content = State(initialValue: blog?.details ?? "")
-        self.onSave = onSave
+    @Environment(\.dismiss) private var dismiss
+
+    // Parent list VM (so we can refresh the list after save)
+    @ObservedObject private var parentViewModel: BlogListViewModel
+
+    // Local form vm
+    @StateObject private var vm: AddEditBlogViewModel
+
+    // UI
+    @State private var showingUsersPicker = false
+
+    init(viewModel parent: BlogListViewModel, blogToEdit: Blog? = nil) {
+        self.parentViewModel = parent
+        _vm = StateObject(wrappedValue: AddEditBlogViewModel(blog: blogToEdit))
     }
-    
+
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
-                TextField("Title", text: $title)
-                TextEditor(text: $content)
-                    .frame(height: 200)
-            }
-            .navigationTitle(blog == nil ? "Add Blog" : "Edit Blog")
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        let newBlog = Blog(
-                            id: blog?.id ?? String(Int.random(in: 1000...9999)),
-                            title: title,
-                            details: content,
-                            ownerId: AuthManager.shared.currentUserId ?? String(-1)
-                        )
-                        onSave(newBlog)
-                        dismiss()
+                Section("Blog") {
+                    TextField("Title", text: $vm.title)
+                    TextEditor(text: $vm.details)
+                        .frame(minHeight: 140, maxHeight: 300)
+                }
+
+                Section("Co-owners") {
+                    Button("Select co-owners (\(vm.selectedCoOwnerIds.count))") {
+                        showingUsersPicker = true
+                    }
+                    if !vm.selectedCoOwnerIds.isEmpty {
+                        // Show names/ids briefly (you can map to user names if you store them)
+                        Text(vm.selectedCoOwnerIds.joined(separator: ", "))
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
                     }
                 }
-                ToolbarItem(placement: .cancellationAction) {
+
+                if let err = vm.errorMessage {
+                    Section { Text(err).foregroundColor(.red) }
+                }
+            }
+            .navigationTitle(vm.editingId == nil ? "Add Blog" : "Edit Blog")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") { dismiss() }
                 }
+
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: saveTapped) {
+                        if vm.isSaving {
+                            ProgressView().scaleEffect(0.75)
+                        } else {
+                            Text("Save")
+                        }
+                    }
+                    .disabled(!vm.isValid || vm.isSaving)
+                }
+            }
+            .sheet(isPresented: $showingUsersPicker) {
+                UsersSelectionView(selected: $vm.selectedCoOwnerIds)
+            }
+        }
+    }
+
+    private func saveTapped() {
+        vm.save { result in
+            switch result {
+            case .success(let blog):
+                // update parent list and dismiss
+                parentViewModel.refreshBlogs(with: blog)
+                dismiss()
+            case .failure:
+                // errorMessage on vm already set; keep the sheet open
+                break
             }
         }
     }
 }
-*/
+

@@ -15,6 +15,7 @@ enum Endpoint {
     case createBlog
     case updateBlog(id: String)
     case deleteBlog(id: String)
+    case users
     
     
     var path: String {
@@ -26,6 +27,7 @@ enum Endpoint {
         case .createBlog: return "/api/blogs"
         case .updateBlog(let id): return "/api/blogs/\(id)"
         case .deleteBlog(let id): return "/api/blogs/\(id)"
+        case .users: return "/api/users"
         }
     }
     
@@ -35,7 +37,7 @@ enum Endpoint {
         case .login, .register, .createBlog: return "POST"
         case .updateBlog: return "PUT"
         case .deleteBlog: return "DELETE"
-        case .blogs, .blog: return "GET"
+        case .blogs, .blog, .users: return "GET"
         }
     }
 }

@@ -22,18 +22,26 @@ final class BlogService {
         APIClient.shared.request(.blog(id: id), completion: completion)
     }
     
-    
-    func createBlog(title: String, content: String, completion: @escaping (Result<Blog, AFError>) -> Void) {
-        let params: Parameters = ["title": title, "content": content]
-        APIClient.shared.request(.createBlog, parameters: params, completion: completion)
+    // Create - now accepts details and coOwnerIds
+    func createBlog(title: String, details: String, coOwnerIds: [String], completion: @escaping (Result<Blog, AFError>) -> Void) {
+        let params: Parameters = [
+            "title": title,
+            "details": details,
+            "coOwnerIds": coOwnerIds
+        ]
+        // endpoint .blogs (POST)
+        APIClient.shared.request(.blogs, method: .post, parameters: params, completion: completion)
     }
     
-    
-    func updateBlog(id: String, title: String, content: String, completion: @escaping (Result<Blog, AFError>) -> Void) {
-        let params: Parameters = ["title": title, "content": content]
-        APIClient.shared.request(.updateBlog(id: id), parameters: params, completion: completion)
+    // Update - now accepts details and coOwnerIds
+    func updateBlog(id: String, title: String, details: String, coOwnerIds: [String], completion: @escaping (Result<Blog, AFError>) -> Void) {
+        let params: Parameters = [
+            "title": title,
+            "details": details,
+            "coOwnerIds": coOwnerIds
+        ]
+        APIClient.shared.request(.updateBlog(id: id), method: .put, parameters: params, completion: completion)
     }
-    
     
     func deleteBlog(id: String, completion: @escaping (Result<VoidResponse, AFError>) -> Void) {
         APIClient.shared.request(.deleteBlog(id: id), completion: completion)

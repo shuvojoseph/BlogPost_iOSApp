@@ -16,9 +16,11 @@ struct BlogListView: View {
                 .sheet(isPresented: $showingRegister) { RegisterView() }
                 .sheet(isPresented: $showingAddBlog) {
                     // BlogFormView(viewModel: BlogFormViewModel())
+                    AddEditBlogView(viewModel: viewModel)
                 }
                 .sheet(item: $showingEditBlog) { blog in
                     // BlogFormView(viewModel: BlogFormViewModel(blog: blog))
+                    AddEditBlogView(viewModel: viewModel, blogToEdit: blog)
                 }
                 .onAppear {
                     viewModel.loadBlogs()
