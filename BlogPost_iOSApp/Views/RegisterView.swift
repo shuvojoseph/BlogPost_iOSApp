@@ -7,29 +7,39 @@
 
 import SwiftUI
 
-
 struct RegisterView: View {
     @StateObject private var viewModel = RegisterViewModel()
     
-    
     var body: some View {
         VStack(spacing: 16) {
-            TextField("Email", text: $viewModel.email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            SecureField("Password", text: $viewModel.password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            SecureField("Confirm Password", text: $viewModel.confirmPassword)
+            TextField("First Name", text: $viewModel.firstName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
+            TextField("Last Name", text: $viewModel.lastName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            TextField("Email", text: $viewModel.email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.emailAddress)
+                .autocapitalization(.none)
+            
+            SecureField("Password", text: $viewModel.password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            SecureField("Confirm Password", text: $viewModel.confirmPassword)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
             
             if let error = viewModel.errorMessage {
                 Text(error).foregroundColor(.red)
             }
             
-            
             Button("Register") {
-                viewModel.register { success in }
+                viewModel.register { success in
+                    // You can handle navigation or alerts here
+                }
             }
+            .buttonStyle(.borderedProminent)
+            .padding(.top, 10)
         }
         .padding()
     }

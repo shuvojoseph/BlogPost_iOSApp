@@ -13,24 +13,27 @@ import Alamofire
 
 
 final class RegisterViewModel: ObservableObject {
+    
+    @Published var isLoading = false
+    @Published var firstName = ""
+    @Published var lastName = ""
     @Published var email = ""
     @Published var password = ""
     @Published var confirmPassword = ""
-    @Published var isLoading = false
     @Published var errorMessage: String?
-    
     
     func register(completion: @escaping (Bool) -> Void) {
         isLoading = true
-        let params: Parameters = ["email": email, "password": password]
+        let params: Parameters = ["email": email, "password": password, "firstName":firstName,"lastName":lastName]
         
         
-        APIClient.shared.request(.register, parameters: params) { (result: Result<AuthTokens, AFError>) in
+        APIClient.shared.request(.register, parameters: params) { (result: Result<Register, AFError>) in
             DispatchQueue.main.async {
                 self.isLoading = false
                 switch result {
                 case .success(let response):
-                    KeychainHelper.shared.save(response.token, service: "accessToken", account: "user")
+                    //KeychainHelper.shared.save(response.token, service: "accessToken", account: "user")
+                    print("Registration Successful :" + response.message)
                     completion(true)
                 case .failure(let error):
                     self.errorMessage = error.localizedDescription
