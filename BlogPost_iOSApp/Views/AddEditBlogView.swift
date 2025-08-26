@@ -77,9 +77,11 @@ struct AddEditBlogView: View {
         vm.save { result in
             switch result {
             case .success(let blog):
-                // update parent list and dismiss
-                parentViewModel.refreshBlogs(with: blog)
-                dismiss()
+                DispatchQueue.main.async {
+                    // update parent list and dismiss
+                    parentViewModel.refreshBlogs(with: blog)
+                    dismiss()
+                }
             case .failure:
                 // errorMessage on vm already set; keep the sheet open
                 break
