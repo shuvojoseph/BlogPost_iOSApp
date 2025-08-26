@@ -13,7 +13,7 @@ final class KeychainHelper {
     static let shared = KeychainHelper()
     private init() {}
     
-    
+    /*
     func set(_ data: Data, for key: String) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -23,7 +23,7 @@ final class KeychainHelper {
         SecItemDelete(query as CFDictionary)
         SecItemAdd(query as CFDictionary, nil)
     }
-    
+    */
     // Save or update
         func save(_ data: Data, service: String, account: String) {
             let query: [String: Any] = [
@@ -49,24 +49,25 @@ final class KeychainHelper {
                 save(data, service: service, account: account)
             }
         }
-    
-    func get(_ key: String) -> Data? {
+ 
+    func get(service: String, account: String) -> Data? {
         let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
-            kSecReturnData as String: true,
-            kSecMatchLimit as String: kSecMatchLimitOne
+            kSecClass as String       : kSecClassGenericPassword,
+            kSecAttrService as String : service,
+            kSecAttrAccount as String : account,
+            kSecReturnData as String  : true,
+            kSecMatchLimit as String  : kSecMatchLimitOne
         ]
         var result: AnyObject?
         SecItemCopyMatching(query as CFDictionary, &result)
         return result as? Data
     }
     
-    
-    func remove(_ key: String) {
+    func remove(service: String, account: String) {
         let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key
+            kSecClass as String       : kSecClassGenericPassword,
+            kSecAttrService as String : service,
+            kSecAttrAccount as String : account
         ]
         SecItemDelete(query as CFDictionary)
     }

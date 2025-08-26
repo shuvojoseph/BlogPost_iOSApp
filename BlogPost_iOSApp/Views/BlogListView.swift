@@ -1,10 +1,3 @@
-//
-//  BlogListView.swift
-//  BlogPost_iOSApp
-//
-//  Created by Shuvo Joseph on 25/8/25.
-//
-
 import SwiftUI
 
 struct BlogListView: View {
@@ -16,60 +9,84 @@ struct BlogListView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.blogs) { blog in
-                    NavigationLink(destination: BlogDetailView(blog: blog)) {
-                        BlogDetailView(blog: blog)
-                    }
-                    .swipeActions {
-                        Button(role: .destructive) {
-                            viewModel.deleteBlog(blog)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
+            blogList
+                .navigationTitle("Dashboard")
+                .toolbar { toolbarContent }
+                .sheet(isPresented: $showingLogin) { LoginView() }
+                .sheet(isPresented: $showingRegister) { RegisterView() }
+                .sheet(isPresented: $showingAddBlog) {
+                    // BlogFormView(viewModel: BlogFormViewModel())
+                }
+                .sheet(item: $showingEditBlog) { blog in
+                    // BlogFormView(viewModel: BlogFormViewModel(blog: blog))
+                }
+                .onAppear {
+                    viewModel.loadBlogs()
+                    viewModel.loadCurrentUser()
+                }
+        }
+    }
 
-                        Button {
-                            showingEditBlog = blog
-                        } label: {
-                            Label("Edit", systemImage: "pencil")
-                        }
-                        .tint(.blue)
-                    }
-                }
+    // MARK: - Subviews
+
+    private var blogList: some View {
+        List {
+            ForEach(viewModel.blogs) { blog in
+                blogRow(blog)
             }
-            .navigationTitle("Dashboard")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    HStack {
-                        Button("Login") { showingLogin = true }
-                        Button("Register") { showingRegister = true }
-                    }
+        }
+    }
+
+    private func blogRow(_ blog: Blog) -> some View {
+        NavigationLink(destination: BlogDetailView(blog: blog)) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(blog.title).font(.headline)
+                Text(blog.details)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .swipeActions {
+            if viewModel.isOwnedOrCoOwned(blog: blog) {
+                Button(role: .destructive) {
+                    viewModel.deleteBlog(blog)
+                } label: {
+                    Label("Delete", systemImage: "trash")
                 }
 
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAddBlog = true
-                    } label: {
-                        Image(systemName: "plus")
-                    }
+                Button {
+                    showingEditBlog = blog
+                } label: {
+                    Label("Edit", systemImage: "pencil")
+                }
+                .tint(.blue)
+            }
+        }
+    }
+
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            if viewModel.isLoggedIn {
+                Button("Logout") {
+                    viewModel.logout()
+                }
+            } else {
+                HStack {
+                    Button("Login") { showingLogin = true }
+                    Button("Register") { showingRegister = true }
                 }
             }
-            .sheet(isPresented: $showingLogin) {
-                LoginView()
-            }
-            .sheet(isPresented: $showingRegister) {
-                RegisterView()
-            }
-            .sheet(isPresented: $showingAddBlog) {
-                //BlogFormView(viewModel: BlogFormViewModel())
-            }
-            .sheet(item: $showingEditBlog) { blog in
-                //BlogFormView(viewModel: BlogFormViewModel(blog: blog))
-            }
-            .onAppear {
-                viewModel.loadBlogs()
+        }
+
+        ToolbarItem(placement: .navigationBarTrailing) {
+            if viewModel.isLoggedIn {
+                Button {
+                    showingAddBlog = true
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
     }
 }
-

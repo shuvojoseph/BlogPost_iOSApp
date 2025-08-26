@@ -7,16 +7,25 @@
 
 import Foundation
 
-
 struct Blog: Codable, Identifiable, Hashable {
-let id: String // String or Int 
-var title: String
-var details: String
-let ownerId: String? // or Int
-var coOwnerIds: [String]? // or [Int]
+    let id: String
+    var title: String
+    var details: String
+    var owners: [BlogOwner]
+    var lastUpdateTime: String?
 
+    struct BlogOwner: Codable, Hashable {
+        let id: String
+        let name: String
+        let email: String
+    }
 
-enum CodingKeys: String, CodingKey {
-case id, title, details, ownerId, coOwnerIds
-}
+    // convenience: owner emails
+    var ownerEmails: [String] { owners.map { $0.email } }
+
+    // check edit permission by email
+    func canEdit(loggedInEmail: String?) -> Bool {
+        guard let email = loggedInEmail else { return false }
+        return owners.contains { $0.email == email }
+    }
 }

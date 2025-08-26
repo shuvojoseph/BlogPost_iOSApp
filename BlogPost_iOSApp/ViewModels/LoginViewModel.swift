@@ -26,8 +26,9 @@ final class LoginViewModel: ObservableObject {
                 self.isLoading = false
                 switch result {
                 case .success(let response):
-                    KeychainHelper.shared.save(response.token, service: "accessToken", account: "user")
-                    KeychainHelper.shared.save(response.refreshToken, service: "refreshToken", account: "user")
+                    //KeychainHelper.shared.save(response.token, service: "accessToken", account: "user")
+                    //KeychainHelper.shared.save(response.refreshToken, service: "refreshToken", account: "user")
+                    AuthManager.shared.saveLogin(email: self.email, token: response.token)
                     completion(true)
                 case .failure(let error):
                     self.errorMessage = error.localizedDescription
