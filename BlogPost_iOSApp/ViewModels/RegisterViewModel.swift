@@ -25,7 +25,17 @@ final class RegisterViewModel: ObservableObject {
     func register(completion: @escaping (Bool) -> Void) {
         isLoading = true
         let params: Parameters = ["email": email, "password": password, "firstName":firstName,"lastName":lastName]
+        guard !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty else {
+                    errorMessage = "All fields are required"
+                    completion(false)
+                    return
+                }
         
+        guard password == confirmPassword else {
+                    errorMessage = "Passwords do not match"
+                    completion(false)
+                    return
+                }
         
         APIClient.shared.request(.register, parameters: params) { (result: Result<Register, AFError>) in
             DispatchQueue.main.async {

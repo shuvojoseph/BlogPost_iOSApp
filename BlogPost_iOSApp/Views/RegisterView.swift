@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     @StateObject private var viewModel = RegisterViewModel()
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(spacing: 16) {
@@ -35,7 +36,9 @@ struct RegisterView: View {
             
             Button("Register") {
                 viewModel.register { success in
-                    // You can handle navigation or alerts here
+                    if success {
+                        presentationMode.wrappedValue.dismiss() // ✅ back to BlogListView
+                    }
                 }
             }
             .buttonStyle(.borderedProminent)
