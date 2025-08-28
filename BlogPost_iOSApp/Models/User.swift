@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable, Identifiable {
+struct User: Decodable, Identifiable {
     let id: String
     let username: String
     let email: String
@@ -17,7 +17,7 @@ struct User: Codable, Identifiable {
         }
     
     enum CodingKeys: String, CodingKey {
-            case id, username, email
+            case id, username, email, name
         }
     
     // Custom initializer to convert Int id to String
@@ -35,8 +35,20 @@ struct User: Codable, Identifiable {
                                                        debugDescription: "ID is not a valid Int or String")
             }
             
-            username = try container.decode(String.self, forKey: .username)
+            //username = try container.decode(String.self, forKey: .username)
             email = try container.decode(String.self, forKey: .email)
+            
+            if let uname = try? container.decode(String.self, forKey: .username) {
+                username = uname
+            } else if let name = try? container.decode(String.self, forKey: .name) {
+                username = name
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: .username,
+                    in: container,
+                    debugDescription: "Neither username nor name found"
+                )
+            }
         }
     // We don’t really need password in the client app
 }
