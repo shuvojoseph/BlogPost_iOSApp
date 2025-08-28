@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class BlogListViewModel: ObservableObject {
     @Published var blogs: [Blog] = []
@@ -15,10 +16,27 @@ final class BlogListViewModel: ObservableObject {
     // Authentication / ownership state
     @Published var currentUserEmail: String? = nil
     @Published var isLoggedIn: Bool = false
+    
+    private var cancellables = Set<AnyCancellable>()
+
+    init() {
+        // Subscribe to AuthManager changes AFTER all properties are initialized
+        AuthManager.shared.$isLoggedIn
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.isLoggedIn, on: self)
+            .store(in: &cancellables)
+        
+        AuthManager.shared.$currentUserEmail
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.currentUserEmail, on: self)
+            .store(in: &cancellables)
+    }
 
     // MARK: - Public API
 
     func loadBlogs() {
+        //print("loadBlogs() called.")
+        //print("isLoggedIn : " + isLoggedIn.description)
         isLoading = true
         BlogService.shared.fetchBlogs { [weak self] result in
             DispatchQueue.main.async {
@@ -64,16 +82,8 @@ final class BlogListViewModel: ObservableObject {
 
     // MARK: - Auth helpers used by the View
 
-    /// Loads current user info from AuthManager (token/email)
-    func loadCurrentUser() {
-        currentUserEmail = AuthManager.shared.currentUserEmail
-        isLoggedIn = (currentUserEmail != nil)
-    }
-
     /// Logout the current user (clears Keychain/UserDefaults and local state)
     func logout() {
         AuthManager.shared.logout()
-        currentUserEmail = nil
-        isLoggedIn = false
     }
 }

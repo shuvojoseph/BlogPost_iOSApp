@@ -24,7 +24,6 @@ struct BlogListView: View {
                 }
                 .onAppear {
                     viewModel.loadBlogs()
-                    viewModel.loadCurrentUser()
                 }
         }
     }
