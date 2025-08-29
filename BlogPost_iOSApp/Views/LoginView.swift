@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-
-import SwiftUI
-
-
 struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
     @Environment(\.presentationMode) var presentationMode
@@ -19,13 +15,15 @@ struct LoginView: View {
         VStack(spacing: 16) {
             TextField("Email", text: $viewModel.email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .accessibilityIdentifier("emailField")
             SecureField("Password", text: $viewModel.password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            
+                .accessibilityIdentifier("passwordField")
             
             if let error = viewModel.errorMessage {
                 Text(error).foregroundColor(.red)
             }
+            
             
             
             Button("Login") {
@@ -34,7 +32,7 @@ struct LoginView: View {
                         presentationMode.wrappedValue.dismiss() // ✅ back to BlogListView
                     }
                 }
-            }
+            }.accessibilityIdentifier("loginButton")
         }
         .padding()
     }
