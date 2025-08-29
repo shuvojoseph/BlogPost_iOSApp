@@ -8,27 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
-/*
-final class UsersSelectionViewModel: ObservableObject {
-    @Published var users: [User] = []
-    @Published var isLoading = false
-    @Published var errorMessage: String?
 
-    func load() {
-        isLoading = true
-        UserService.shared.fetchUsers { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.isLoading = false
-                switch result {
-                case .success(let u): self.users = u
-                case .failure(let err): self.errorMessage = err.localizedDescription
-                }
-            }
-        }
-    }
-}
-*/
 @MainActor
 class UsersSelectionViewModel: ObservableObject {
     @Published var users: [User] = []

@@ -13,17 +13,6 @@ final class KeychainHelper {
     static let shared = KeychainHelper()
     private init() {}
     
-    /*
-    func set(_ data: Data, for key: String) {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
-            kSecValueData as String: data
-        ]
-        SecItemDelete(query as CFDictionary)
-        SecItemAdd(query as CFDictionary, nil)
-    }
-    */
     // Save or update
         func save(_ data: Data, service: String, account: String) {
             let query: [String: Any] = [
