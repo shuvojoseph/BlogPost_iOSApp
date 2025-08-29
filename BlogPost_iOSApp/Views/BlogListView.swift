@@ -40,9 +40,7 @@ struct BlogListView: View {
             .toolbar { toolbarContent }
             .searchable(text: $searchText, placement: .navigationBarDrawer, prompt: "Search blogs...")
             .sheet(isPresented: $showingLogin) { LoginView() }
-            .sheet(isPresented: $showingRegister) {
-                RegisterView().interactiveDismissDisabled(true)
-            }
+            .sheet(isPresented: $showingRegister) { RegisterView() }
             .sheet(isPresented: $showingAddBlog) {
                 AddEditBlogView(viewModel: viewModel)
             }
@@ -148,6 +146,14 @@ struct BlogListView: View {
                         .font(.caption)
                         .foregroundColor(.blue)
                     
+                    Spacer()
+                    /*
+                     if let date = blog.createdAt {
+                     Text(date, style: .relative)
+                     .font(.caption)
+                     .foregroundColor(.secondary)
+                     }
+                     */
                 }
             }
             .padding()
@@ -166,17 +172,10 @@ struct BlogListView: View {
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             if viewModel.isLoggedIn {
-                Menu {
-                    Button(role: .destructive) {
-                        viewModel.logout()
-                    } label: {
-                        Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
-                    }
-                } label: {
-                    Image(systemName: "person.circle.fill")
-                        .font(.title3)
-                        .foregroundColor(.blue)
+                Button("Logout") {
+                    viewModel.logout()
                 }
+                .foregroundColor(.red)
             } else {
                 HStack(spacing: 16) {
                     Button("Login") { showingLogin = true }
@@ -200,7 +199,6 @@ struct BlogListView: View {
             }
         }
     }
-     
 }
 /*
 struct BlogListView: View {
