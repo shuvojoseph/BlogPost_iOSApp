@@ -4,6 +4,8 @@
 <dict>
 	<key>BASE_URL_DotNetCore</key>
 	<string>http://localhost:5006</string>
+	<key>BASE_URL_DotNetCore_Clean_Architecture</key>
+	<string>http://localhost:5186</string>
 	<key>BASE_URL_SpringBoot</key>
 	<string>http://localhost:8080</string>
 </dict>
