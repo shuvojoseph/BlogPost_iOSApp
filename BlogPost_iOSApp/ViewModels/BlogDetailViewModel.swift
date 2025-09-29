@@ -11,11 +11,16 @@ import Foundation
 final class BlogDetailViewModel: ObservableObject {
     @Published var blog: Blog?
     @Published var isLoading = false
+    private let blogService: BlogServiceProtocol
     
+    // Inject the service
+    init(blogService: BlogServiceProtocol) {
+        self.blogService = blogService
+    }
     
     func loadBlog(id: String) {
         isLoading = true
-        BlogService.shared.fetchBlog(id: id) { result in
+        blogService.fetchBlog(id: id) { result in
             DispatchQueue.main.async {
                 self.isLoading = false
                 if case .success(let blog) = result {

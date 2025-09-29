@@ -1,7 +1,14 @@
 import SwiftUI
 
 struct BlogListView: View {
-    @StateObject private var viewModel = BlogListViewModel()
+    let blogService: BlogServiceProtocol
+    //@StateObject private var viewModel = BlogListViewModel()
+    @StateObject private var viewModel: BlogListViewModel
+
+    init(blogService: BlogServiceProtocol) {
+        self.blogService = blogService
+        _viewModel = StateObject(wrappedValue: BlogListViewModel(blogService: blogService))
+    }
     @State private var showingLogin = false
     @State private var showingRegister = false
     @State private var showingAddBlog = false
@@ -42,10 +49,10 @@ struct BlogListView: View {
             .sheet(isPresented: $showingLogin) { LoginView() }
             .sheet(isPresented: $showingRegister) { RegisterView() }
             .sheet(isPresented: $showingAddBlog) {
-                AddEditBlogView(viewModel: viewModel)
+                AddEditBlogView(viewModel: viewModel, blogService: blogService)
             }
             .sheet(item: $showingEditBlog) { blog in
-                AddEditBlogView(viewModel: viewModel, blogToEdit: blog)
+                AddEditBlogView(viewModel: viewModel, blogToEdit: blog, blogService: blogService)
             }
             .refreshable {
                 viewModel.loadBlogs()

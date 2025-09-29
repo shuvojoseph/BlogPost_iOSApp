@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 final class BlogListViewModel: ObservableObject {
+    private let blogService: BlogServiceProtocol
     @Published var blogs: [Blog] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
@@ -19,7 +20,8 @@ final class BlogListViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
 
-    init() {
+    init(blogService: BlogServiceProtocol) {
+        self.blogService = blogService
         // Subscribe to AuthManager changes AFTER all properties are initialized
         AuthManager.shared.$isLoggedIn
             .receive(on: DispatchQueue.main)
@@ -38,7 +40,7 @@ final class BlogListViewModel: ObservableObject {
         //print("loadBlogs() called.")
         //print("isLoggedIn : " + isLoggedIn.description)
         isLoading = true
-        BlogService.shared.fetchBlogs { [weak self] result in
+        blogService.fetchBlogs { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.isLoading = false
@@ -53,7 +55,7 @@ final class BlogListViewModel: ObservableObject {
     }
 
     func deleteBlog(_ blog: Blog) {
-        BlogService.shared.deleteBlog(id: blog.id) { [weak self] result in
+        blogService.deleteBlog(id: blog.id) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 switch result {

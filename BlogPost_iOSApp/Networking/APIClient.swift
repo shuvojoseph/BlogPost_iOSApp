@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 
-final class APIClient {
+final class APIClient: APIClientProtocol {
     static let shared = APIClient()
     private let baseURL: String
     

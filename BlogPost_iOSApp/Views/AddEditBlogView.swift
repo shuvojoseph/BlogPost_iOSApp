@@ -19,12 +19,18 @@ struct AddEditBlogView: View {
 
     // UI
     @State private var showingUsersPicker = false
-
+/*
     init(viewModel parent: BlogListViewModel, blogToEdit: Blog? = nil) {
         self.parentViewModel = parent
         _vm = StateObject(wrappedValue: AddEditBlogViewModel(blog: blogToEdit))
     }
-
+*/
+    init(viewModel parent: BlogListViewModel, blogToEdit: Blog? = nil, blogService: BlogServiceProtocol) {
+        self.parentViewModel = parent
+        _vm = StateObject(
+            wrappedValue: AddEditBlogViewModel(blogService: blogService, blog: blogToEdit)
+        )
+    }
     var body: some View {
         NavigationStack {
             Form {

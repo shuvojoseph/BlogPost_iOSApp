@@ -117,3 +117,26 @@ Open in Xcode
 open BlogPost_iOSApp.xcodeproj
 
 Run on iOS Simulator or a real device.
+
+
+Dependency Injection
+
+BlogService is now injected into view models (BlogListViewModel, AddEditBlogViewModel, BlogDetailViewModel) instead of being accessed as a singleton directly.
+
+AuthManager and APIClient remain singletons since they are globally shared managers.
+
+This demonstrates understanding of Dependency Injection (DI) and makes it easier to write unit tests or replace services in the future.
+
+                        
+Backend Notes
+                        
+The backend is hosted on Render and may go inactive after ~45 minutes of inactivity.
+                        
+If the backend is inactive, it may take ~2 minutes to start again.
+                        
+To activate the backend before using the app, open this link in a browser:
+                            
+    https://blogpostspringboot.onrender.com/api/blogs
+                        
+                        
+Once the backend is active, you can use the mobile app to fetch or post blogs.

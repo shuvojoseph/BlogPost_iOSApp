@@ -9,17 +9,21 @@ import Foundation
 import Alamofire
 
 
-final class BlogService {
-    static let shared = BlogService()
+final class BlogService: BlogServiceProtocol {
+    //static let shared = BlogService()
+    private let apiClient: APIClientProtocol
     
+    init(apiClient: APIClientProtocol = APIClient.shared) {
+        self.apiClient = apiClient
+    }
     
     func fetchBlogs(completion: @escaping (Result<[Blog], AFError>) -> Void) {
-        APIClient.shared.request(.blogs, completion: completion)
+        apiClient.request(.blogs, completion: completion)
     }
     
     
     func fetchBlog(id: String, completion: @escaping (Result<Blog, AFError>) -> Void) {
-        APIClient.shared.request(.blog(id: id), completion: completion)
+        apiClient.request(.blog(id: id), completion: completion)
     }
     
     private func authHeaders() -> HTTPHeaders? {
@@ -37,7 +41,7 @@ final class BlogService {
             "coOwnerIds": coOwnerIds
         ]
         // endpoint .blogs (POST)
-        APIClient.shared.request(.blogs, method: .post, parameters: params, headers: authHeaders(), completion: completion)
+        apiClient.request(.blogs, method: .post, parameters: params, headers: authHeaders(), completion: completion)
     }
     
     // Update - now accepts details and coOwnerIds
@@ -47,11 +51,11 @@ final class BlogService {
             "details": details,
             "coOwnerIds": coOwnerIds
         ]
-        APIClient.shared.request(.updateBlog(id: id), method: .put, parameters: params, headers: authHeaders(), completion: completion)
+        apiClient.request(.updateBlog(id: id), method: .put, parameters: params, headers: authHeaders(), completion: completion)
     }
     
     func deleteBlog(id: String, completion: @escaping (Result<VoidResponse, AFError>) -> Void) {
-        APIClient.shared.request(.deleteBlog(id: id), headers: authHeaders(), completion: completion)
+        apiClient.request(.deleteBlog(id: id), headers: authHeaders(), completion: completion)
     }
 }
 

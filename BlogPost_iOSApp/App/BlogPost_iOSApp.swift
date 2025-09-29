@@ -11,8 +11,11 @@ import SwiftUI
 struct BlogPost_iOSApp: App {
     var body: some Scene {
         WindowGroup {
-            //ContentView()
-            BlogListView()
+            let apiClient = APIClient.shared
+            let blogService = BlogService(apiClient: apiClient)
+            let blogListVM = BlogListViewModel(blogService: blogService)
+            
+            BlogListView(blogService: blogService)
         }
     }
 }

@@ -15,7 +15,8 @@ final class AddEditBlogViewModel: ObservableObject {
     @Published var errorMessage: String?
 
     private(set) var editingId: String?
-
+    private let blogService: BlogServiceProtocol
+/*
     init(blog: Blog? = nil) {
         if let blog = blog {
             editingId = blog.id
@@ -25,7 +26,17 @@ final class AddEditBlogViewModel: ObservableObject {
             selectedCoOwnerIds = Set(blog.owners.map { $0.id })
         }
     }
-
+*/
+    // Inject the service
+    init(blogService: BlogServiceProtocol, blog: Blog? = nil) {
+        self.blogService = blogService
+        if let blog = blog {
+            editingId = blog.id
+            title = blog.title
+            details = blog.details
+            selectedCoOwnerIds = Set(blog.owners.map { $0.id })
+        }
+    }
     var isValid: Bool {
         !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !details.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -47,7 +58,7 @@ final class AddEditBlogViewModel: ObservableObject {
 
         if let id = editingId {
             // Update
-            BlogService.shared.updateBlog(id: id, title: title, details: details, coOwnerIds: coOwnerIdsArray) { result in
+            blogService.updateBlog(id: id, title: title, details: details, coOwnerIds: coOwnerIdsArray) { result in
                 DispatchQueue.main.async {
                     self.isSaving = false
                     switch result {
@@ -61,7 +72,7 @@ final class AddEditBlogViewModel: ObservableObject {
             }
         } else {
             // Create
-            BlogService.shared.createBlog(title: title, details: details, coOwnerIds: coOwnerIdsArray) { result in
+            blogService.createBlog(title: title, details: details, coOwnerIds: coOwnerIdsArray) { result in
                 DispatchQueue.main.async {
                     self.isSaving = false
                     switch result {
