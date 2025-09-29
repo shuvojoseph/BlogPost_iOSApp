@@ -42,7 +42,6 @@ final class RegisterViewModel: ObservableObject {
                 self.isLoading = false
                 switch result {
                 case .success(let response):
-                    //KeychainHelper.shared.save(response.token, service: "accessToken", account: "user")
                     print("Registration Successful :" + response.message)
                     completion(true)
                 case .failure(let error):

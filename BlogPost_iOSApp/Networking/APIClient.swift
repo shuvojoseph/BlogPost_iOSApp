@@ -128,14 +128,4 @@ final class APIClient {
             }
         }
     }
-    /*
-     AF.request(url,
-     method: method ?? HTTPMethod(rawValue: endpoint.method),
-     parameters: parameters,
-     encoding: encoding,
-     headers: headers)
-     .validate()
-     .responseDecodable(of: T.self) { response in
-     completion(response.result)
-     }*/
 }
