@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2908A42BF848FE26FEBB4BF8 /* Pods_BlogPost_iOSApp_BlogPost_iOSAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398E75E6822F56FEA82A4074 /* Pods_BlogPost_iOSApp_BlogPost_iOSAppUITests.framework */; };
+		308CAB8C2E8A6B76008B844B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 308CAB8B2E8A6B71008B844B /* README.md */; };
 		EEE62FF9DBA49772685DAD60 /* Pods_BlogPost_iOSApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B25031E29960DCC9428E /* Pods_BlogPost_iOSApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		2BCAF3C63675C91F8EE7210F /* Pods-BlogPost_iOSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlogPost_iOSApp.release.xcconfig"; path = "Target Support Files/Pods-BlogPost_iOSApp/Pods-BlogPost_iOSApp.release.xcconfig"; sourceTree = "<group>"; };
+		308CAB8B2E8A6B71008B844B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		308FC31C2E5C402B00418FCE /* BlogPost_iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlogPost_iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308FC32A2E5C402B00418FCE /* BlogPost_iOSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlogPost_iOSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		308FC3342E5C402B00418FCE /* BlogPost_iOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlogPost_iOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,7 @@
 		308FC3132E5C402B00418FCE = {
 			isa = PBXGroup;
 			children = (
+				308CAB8B2E8A6B71008B844B /* README.md */,
 				308FC31E2E5C402B00418FCE /* BlogPost_iOSApp */,
 				308FC32D2E5C402B00418FCE /* BlogPost_iOSAppTests */,
 				308FC3372E5C402B00418FCE /* BlogPost_iOSAppUITests */,
@@ -245,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				308CAB8C2E8A6B76008B844B /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
