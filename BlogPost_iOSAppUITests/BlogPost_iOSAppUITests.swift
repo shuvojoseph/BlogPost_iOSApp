@@ -95,10 +95,10 @@ final class BlogPost_iOSAppUITests: XCTestCase {
         
         // Fill login form
         emailField.tap()
-        emailField.typeText("ios24@deshiit.com")
+        emailField.typeText("shuvo1@deshiit.com")
         
         passwordField.tap()
-        passwordField.typeText("ios1234")
+        passwordField.typeText("Qwe123$")
         
         // Tap login button and wait for sheet to dismiss
         loginFormButton.tap()
