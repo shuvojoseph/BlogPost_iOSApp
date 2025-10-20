@@ -42,18 +42,21 @@ An iOS application that allows users to register, log in, and manage blogs with 
 - XCTest for Unit & UI testing
 
 ## 📂 Project Structure
-BlogPost_iOSApp/
-│── App/ # Main App entry
-│── Models/ # Blog, User, API response models
-│── Services/ # BlogService, UserService, APIClient
-│── Networking/ # APIClient, Endpoint, APIError
-│── ViewModels/ # MVVM layer managing state & logic
-│── Views/ # SwiftUI Views (Dashboard, Login, Register, BlogForm)
-│── Managers/ # AuthManager, KeychainHelper
-│── Tests/ # Unit tests
-│── UITests/ # UI tests
-│── README.md # Project documentation
+```
 
+BlogPost_iOSApp/
+│── App/               # Main App entry
+│── Models/            # Blog, User, API response models
+│── Services/          # BlogService, UserService, APIClient
+│── Networking/        # APIClient, Endpoint, APIError
+│── ViewModels/        # MVVM layer managing state & logic
+│── Views/             # SwiftUI Views (Dashboard, Login, Register, BlogForm)
+│── Managers/          # AuthManager, KeychainHelper
+│── Tests/             # Unit tests
+│── UITests/           # UI tests
+│── README.md          # Project documentation
+
+````
 
 ## 🔑 Authentication
 - JWT tokens are stored securely in Keychain.
@@ -73,27 +76,32 @@ BlogPost_iOSApp/
 1. Clone the repository:  
 ```bash
 git clone https://github.com/shuvojoseph/BlogPost_iOSApp.git
-Install dependencies (CocoaPods):
+````
 
+2. Install dependencies (CocoaPods):
+
+```bash
 pod install
-Open in Xcode:
+```
 
+3. Open in Xcode:
+
+```bash
 open BlogPost_iOSApp.xcodeproj
-Run on iOS Simulator or a real device.
+```
 
-Dependency Injection
-BlogService is now injected into view models (BlogListViewModel, AddEditBlogViewModel, BlogDetailViewModel) instead of being accessed as a singleton directly.
+4. Run on iOS Simulator or a real device.
 
-AuthManager and APIClient remain singletons since they are globally shared managers.
+## Dependency Injection
 
-This demonstrates understanding of Dependency Injection (DI) and makes it easier to write unit tests or replace services in the future.
+* BlogService is now **injected** into view models (`BlogListViewModel`, `AddEditBlogViewModel`, `BlogDetailViewModel`) instead of being accessed as a singleton directly.
+* AuthManager and APIClient remain singletons since they are globally shared managers.
+* This demonstrates understanding of **Dependency Injection (DI)** and makes it easier to write unit tests or replace services in the future.
 
-Backend Notes
-The backend is hosted on Render and may go inactive after ~45 minutes of inactivity.
+## Backend Notes
 
-If the backend is inactive, it may take ~2 minutes to start again.
-
-To activate the backend before using the app, open this link in a browser:
-https://blogpostspringboot.onrender.com/api/blogs
-
-Once the backend is active, you can use the mobile app to fetch or post blogs.
+* The backend is hosted on Render and may go inactive after ~45 minutes of inactivity.
+* If the backend is inactive, it may take ~2 minutes to start again.
+* To activate the backend before using the app, open this link in a browser:
+  [https://blogpostspringboot.onrender.com/api/blogs](https://blogpostspringboot.onrender.com/api/blogs)
+* Once the backend is active, you can use the mobile app to fetch or post blogs.
