@@ -145,3 +145,10 @@ struct LoginView: View {
         }
     }
 }
+
+// Preview
+struct LoginViewView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
+    }
+}

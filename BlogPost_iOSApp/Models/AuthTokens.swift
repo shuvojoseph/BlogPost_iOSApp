@@ -7,8 +7,7 @@
 
 import Foundation
 
-
 struct AuthTokens: Codable {
-let token: String
-let refreshToken: String
+    let token: String
+    let refreshToken: String
 }
