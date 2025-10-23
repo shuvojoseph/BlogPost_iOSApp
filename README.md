@@ -33,6 +33,16 @@ An iOS application that allows users to register, log in, and manage blogs with 
 - Unit Tests for models and API response decoding.
 - UI Tests for login/logout flow and navigation.
 
+## 📱 App Screenshots
+
+| Login | Dashboard |
+|:------:|:----------:|
+| ![Login Screen](Screenshots/login.jpg) | ![Dashboard Screen](Screenshots/dashboard.jpg) |
+
+| Register | Add / Edit Blog |
+|:----------:|:----------------:|
+| ![Register Screen](Screenshots/register.jpg) | ![Add or Edit Blog](Screenshots/addEditBlog.jpg) |
+
 ## 🛠️ Tech Stack
 - SwiftUI for UI
 - MVVM architecture
