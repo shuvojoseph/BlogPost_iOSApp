@@ -43,6 +43,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		3039DFF92EAA59C800CA1B26 /* Screenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		308FC31E2E5C402B00418FCE /* BlogPost_iOSApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BlogPost_iOSApp;
@@ -90,6 +95,7 @@
 		308FC3132E5C402B00418FCE = {
 			isa = PBXGroup;
 			children = (
+				3039DFF92EAA59C800CA1B26 /* Screenshots */,
 				308CAB8B2E8A6B71008B844B /* README.md */,
 				308FC31E2E5C402B00418FCE /* BlogPost_iOSApp */,
 				308FC32D2E5C402B00418FCE /* BlogPost_iOSAppTests */,
@@ -148,6 +154,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				3039DFF92EAA59C800CA1B26 /* Screenshots */,
 				308FC31E2E5C402B00418FCE /* BlogPost_iOSApp */,
 			);
 			name = BlogPost_iOSApp;

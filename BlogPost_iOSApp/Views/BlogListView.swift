@@ -2,7 +2,6 @@ import SwiftUI
 
 struct BlogListView: View {
     let blogService: BlogServiceProtocol
-    //@StateObject private var viewModel = BlogListViewModel()
     @StateObject private var viewModel: BlogListViewModel
 
     init(blogService: BlogServiceProtocol) {
