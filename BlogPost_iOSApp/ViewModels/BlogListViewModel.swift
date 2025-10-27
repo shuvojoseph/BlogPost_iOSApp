@@ -24,12 +24,12 @@ final class BlogListViewModel: ObservableObject {
         self.blogService = blogService
         // Subscribe to AuthManager changes AFTER all properties are initialized
         AuthManager.shared.$isLoggedIn
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main).print("isLoggedIn")
             .assign(to: \.isLoggedIn, on: self)
             .store(in: &cancellables)
         
         AuthManager.shared.$currentUserEmail
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main).print("currentUserEmail")
             .assign(to: \.currentUserEmail, on: self)
             .store(in: &cancellables)
     }

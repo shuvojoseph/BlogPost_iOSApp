@@ -57,6 +57,7 @@ struct BlogListView: View {
                 viewModel.loadBlogs()
             }
             .onAppear {
+                print("BlogListView onAppear")
                 viewModel.loadBlogs()
             }
         }
