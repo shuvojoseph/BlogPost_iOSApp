@@ -183,13 +183,20 @@ struct BlogListView: View {
                     viewModel.logout()
                 }
                 .foregroundColor(.red)
+                .font(.system(size: 16, weight: .medium))
             } else {
-                HStack(spacing: 16) {
-                    Button("Login") { showingLogin = true }
-                        .buttonStyle(BeautifulOutlineButtonStyle())
-                    
-                    Button("Register") { showingRegister = true }
-                        .buttonStyle(BeautifulOutlineButtonStyle())
+                Button {
+                    showingLogin = true
+                } label: {
+                    Text("Login")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(.blue)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.blue, lineWidth: 1.5)
+                        )
                 }
             }
         }
@@ -200,8 +207,22 @@ struct BlogListView: View {
                     showingAddBlog = true
                 } label: {
                     Image(systemName: "plus.circle.fill")
-                        .font(.title3)
+                        .font(.title2)
                         .foregroundColor(.blue)
+                }
+            } else {
+                Button {
+                    showingRegister = true
+                } label: {
+                    Text("Register")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.blue)
+                        )
                 }
             }
         }
