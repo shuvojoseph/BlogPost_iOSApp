@@ -37,7 +37,9 @@ struct BlogListView: View {
                 .ignoresSafeArea()
                 
                 if viewModel.blogs.isEmpty {
-                    emptyStateView
+                    BlogEmptyStateView(isLoggedIn: viewModel.isLoggedIn) {
+                        showingLogin = true
+                    }
                 } else {
                     blogList
                 }
@@ -65,166 +67,31 @@ struct BlogListView: View {
     
     // MARK: - Subviews
     
-    private var emptyStateView: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "doc.richtext.fill")
-                .font(.system(size: 60))
-                .foregroundColor(.secondary)
-                .opacity(0.5)
-            
-            Text("No Blogs Yet")
-                .font(.title2)
-                .fontWeight(.semibold)
-                .foregroundColor(.secondary)
-            
-            Text(viewModel.isLoggedIn ?
-                 "Tap the + button to create your first blog!" :
-                 "Sign in to start writing your story")
-                .font(.body)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-            
-            if !viewModel.isLoggedIn {
-                Button("Sign In") {
-                    showingLogin = true
-                }
-                .buttonStyle(BeautifulButtonStyle(backgroundColor: .blue))
-                .padding(.top, 10)
-            }
-        }
-    }
-    
     private var blogList: some View {
         ScrollView {
             LazyVStack(spacing: 16) {
                 ForEach(filteredBlogs) { blog in
-                    blogCard(blog)
-                        .padding(.horizontal)
+                    BlogCardView(
+                        blog: blog,
+                        isOwnedOrCoOwned: viewModel.isOwnedOrCoOwned(blog:),
+                        onEdit: { showingEditBlog = $0 },
+                        onDelete: { viewModel.deleteBlog($0) }
+                    )
+                    .padding(.horizontal)
                 }
             }
             .padding(.vertical)
         }
     }
     
-    private func blogCard(_ blog: Blog) -> some View {
-        NavigationLink(destination: BlogDetailView(blog: blog)) {
-            VStack(alignment: .leading, spacing: 12) {
-                // Header with title and menu
-                HStack {
-                    Text(blog.title)
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                        .lineLimit(2)
-                    
-                    Spacer()
-                    
-                    if viewModel.isOwnedOrCoOwned(blog: blog) {
-                        Menu {
-                            Button {
-                                showingEditBlog = blog
-                            } label: {
-                                Label("Edit", systemImage: "pencil")
-                            }
-                            
-                            Button(role: .destructive) {
-                                viewModel.deleteBlog(blog)
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis.circle.fill")
-                                .foregroundColor(.secondary)
-                                .padding(4)
-                        }
-                    }
-                }
-                
-                // Blog content preview
-                Text(blog.details)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .lineLimit(3)
-                
-                // Footer with metadata
-                HStack {
-                    Text("Auther")
-                        .font(.caption)
-                        .foregroundColor(.blue)
-                    
-                    Spacer()
-                    /*
-                     if let date = blog.createdAt {
-                     Text(date, style: .relative)
-                     .font(.caption)
-                     .foregroundColor(.secondary)
-                     }
-                     */
-                }
-            }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(16)
-            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-            )
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-    
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
-            if viewModel.isLoggedIn {
-                Button("Logout") {
-                    viewModel.logout()
-                }
-                .foregroundColor(.red)
-                .font(.system(size: 16, weight: .medium))
-            } else {
-                Button {
-                    showingLogin = true
-                } label: {
-                    Text("Login")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundColor(.blue)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.blue, lineWidth: 1.5)
-                        )
-                }
-            }
-        }
-        
-        ToolbarItem(placement: .navigationBarTrailing) {
-            if viewModel.isLoggedIn {
-                Button {
-                    showingAddBlog = true
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(.blue)
-                }
-            } else {
-                Button {
-                    showingRegister = true
-                } label: {
-                    Text("Register")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.blue)
-                        )
-                }
-            }
-        }
+        BlogListToolbar(
+            isLoggedIn: viewModel.isLoggedIn,
+            onLogout: { viewModel.logout() },
+            onLogin: { showingLogin = true },
+            onRegister: { showingRegister = true },
+            onAdd: { showingAddBlog = true }
+        )
     }
 }

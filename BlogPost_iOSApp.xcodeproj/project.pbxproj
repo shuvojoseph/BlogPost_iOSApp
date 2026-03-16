@@ -45,29 +45,21 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3039DFF92EAA59C800CA1B26 /* Screenshots */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Screenshots;
 			sourceTree = "<group>";
 		};
 		308FC31E2E5C402B00418FCE /* BlogPost_iOSApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BlogPost_iOSApp;
 			sourceTree = "<group>";
 		};
 		308FC32D2E5C402B00418FCE /* BlogPost_iOSAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BlogPost_iOSAppTests;
 			sourceTree = "<group>";
 		};
 		308FC3372E5C402B00418FCE /* BlogPost_iOSAppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BlogPost_iOSAppUITests;
 			sourceTree = "<group>";
 		};
@@ -313,8 +305,12 @@
 			);
 			inputFileListPaths = (
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -328,8 +324,12 @@
 			);
 			inputFileListPaths = (
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
