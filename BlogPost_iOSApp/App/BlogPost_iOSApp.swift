@@ -13,7 +13,7 @@ struct BlogPost_iOSApp: App {
         WindowGroup {
             let apiClient = APIClient.shared
             let blogService = BlogService(apiClient: apiClient)
-            let blogListVM = BlogListViewModel(blogService: blogService)
+            //let blogListVM = BlogListViewModel(blogService: blogService)
             
             BlogListView(blogService: blogService)
         }
